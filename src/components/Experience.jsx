@@ -17,9 +17,10 @@ const experiences = [
 ];
 
 const skills = {
-  "AI & Systems": ["Google Gemini API", "LangChain", "LangGraph", "RAG Pipelines", "OpenCV", "TensorFlow"],
-  "Backend & Data": ["Python", "FastAPI", "Flask", "MSSQL", "PostgreSQL"],
-  "Frontend & Core": ["React", "Node.js", "JavaScript", "Tailwind CSS", "C/C++"]
+  "Programming Languages": ["Python", "C/C++", "SQL (Postgres, MSSQL)", "JavaScript", "HTML/CSS"],
+  "Frameworks": ["FastAPI", "React", "Node.js", "MongoDB", "Flask", "Django", "WordPress", "Streamlit"],
+  "Libraries": ["Pandas", "NumPy", "Matplotlib", "TensorFlow", "Keras", "OpenCV", "Scikit-Learn", "PyTorch"],
+  "LLMs & AI Systems": ["OpenAI GPT", "Google Gemini API", "LangChain", "LangGraph", "Ollama", "RAG Pipelines", "Multi-Agent Systems"]
 };
 
 export default function Experience() {
