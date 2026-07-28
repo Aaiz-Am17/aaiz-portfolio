@@ -1,10 +1,10 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail } from "lucide-react";
 
-// Custom SVGs replacing the removed Lucide brand icons
 const GithubIcon = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3-.3 6-1.5 6-6.5a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 5 3 6.2 6 6.5a4.8 4.8 0 0 0-1 3.2v4" />
@@ -20,6 +20,49 @@ const LinkedinIcon = ({ className }) => (
 );
 
 export default function Contact() {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState("idle");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          access_key: "6dce2814-ed1f-4b6d-a294-9a9b917a8d2b", 
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `New Portfolio Message from ${formData.name}`,
+          from_name: "Aaiz Mohsin Portfolio"
+        }),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" }); 
+        setTimeout(() => setStatus("idle"), 3000); 
+      } else {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 3000);
+      }
+    } catch (error) {
+      console.error("Submission failed", error);
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 3000);
+    }
+  };
+
   return (
     <section id="contact" className="container mx-auto px-8 py-24 max-w-3xl mb-24">
       <div className="text-center mb-12">
@@ -34,22 +77,55 @@ export default function Contact() {
           <CardTitle>Send a Message</CardTitle>
           <CardDescription>I will get back to you within 24 hours.</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label className="text-sm font-medium leading-none">Name</label>
-              <Input placeholder="John Doe" className="bg-background/50" />
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="text-sm font-medium leading-none">Name</label>
+                <Input 
+                  required 
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="John Doe" 
+                  className="bg-background/50" 
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium leading-none">Email</label>
+                <Input 
+                  required 
+                  type="email" 
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="john@example.com" 
+                  className="bg-background/50" 
+                />
+              </div>
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium leading-none">Email</label>
-              <Input type="email" placeholder="john@example.com" className="bg-background/50" />
+              <label className="text-sm font-medium leading-none">Message</label>
+              <Textarea 
+                required 
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="How can we collaborate?" 
+                className="min-h-[120px] bg-background/50" 
+              />
             </div>
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-medium leading-none">Message</label>
-            <Textarea placeholder="How can we collaborate?" className="min-h-[120px] bg-background/50" />
-          </div>
-          <Button className="w-full">Send Message</Button>
+            <Button 
+              type="submit" 
+              className="w-full transition-all" 
+              disabled={status === "loading" || status === "success"}
+            >
+              {status === "loading" && "Routing Data..."}
+              {status === "success" && "Message Delivered!"}
+              {status === "error" && "Error Sending Message"}
+              {status === "idle" && "Send Message"}
+            </Button>
+          </form>
         </CardContent>
       </Card>
 
