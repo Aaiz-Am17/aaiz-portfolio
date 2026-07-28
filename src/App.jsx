@@ -1,19 +1,28 @@
 import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Projects from "./components/Projects";
+import Experience from "./components/Experience";
+import Contact from "./components/Contact";
 
 function App() {
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans antialiased selection:bg-primary selection:text-primary-foreground">
-      <Navbar />
+    <div className="min-h-screen bg-background text-foreground font-sans antialiased selection:bg-primary selection:text-primary-foreground relative scroll-smooth">
+      {/* Background Gradient Effect */}
+      <div className="fixed top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
       
-      {/* The rest of the sections will go here! */}
-      <main className="container mx-auto px-8 py-24 flex flex-col items-center justify-center text-center">
-        <h1 className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-4">
-          Status: Online
-        </h1>
-        <h2 className="text-4xl font-extrabold tracking-tight lg:text-5xl">
-          Dark Mode & Navigation <br /> <span className="text-primary">Successfully Initialized.</span>
-        </h2>
+      <Navbar />
+      <main>
+        <Hero />
+        <Projects />
+        <Experience />
+        <Contact />
       </main>
+      
+      <footer className="border-t border-border/40 py-6 text-center">
+        <p className="text-sm text-muted-foreground">
+          © {new Date().getFullYear()} Aaiz Mohsin. Architected with React & shadcn/ui.
+        </p>
+      </footer>
     </div>
   );
 }
