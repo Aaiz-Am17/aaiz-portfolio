@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Cpu } from "lucide-react";
-import profilePic from "../assets/me.jpeg";
+import profilePic from "../assets/profile.jpeg";
 
 export default function Hero() {
   return (
