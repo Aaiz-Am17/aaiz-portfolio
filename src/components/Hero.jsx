@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Cpu } from "lucide-react";
 import profilePic from "../assets/profile.jpeg";
-import AiNetwork from "./AiNetwork"; // Injecting our new 3D component
+import AiNetwork from "./AiNetwork";
 
 export default function Hero() {
   return (

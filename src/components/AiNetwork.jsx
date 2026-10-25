@@ -2,7 +2,6 @@ import { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Float } from '@react-three/drei';
 
-// This is the actual 3D object sitting inside the scene
 function AbstractNode() {
   const meshRef = useRef();
   const [hovered, setHover] = useState(false);
@@ -34,19 +33,13 @@ function AbstractNode() {
   );
 }
 
-// This is the Canvas wrapper that acts as the portal to the WebGL GPU
 export default function AiNetwork() {
   return (
     <div className="absolute inset-0 z-0 w-full h-full pointer-events-auto cursor-grab active:cursor-grabbing">
       <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
-        {/* Scene Lighting */}
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
-        
-        {/* The 3D Object */}
         <AbstractNode />
-        
-        {/* Allows the user to drag and rotate the object with their mouse */}
         <OrbitControls enableZoom={false} enablePan={false} />
       </Canvas>
     </div>
