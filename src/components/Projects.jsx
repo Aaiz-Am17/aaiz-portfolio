@@ -12,13 +12,13 @@ const projects = [
   {
     title: "Self-Improving AI Agent",
     description: "An autonomous agentic workflow capable of iterative self-correction and reasoning. Built to handle complex, multi-step programmatic tasks with dynamic context adjustment.",
-    tags: ["Python", "LLMs", "Agentic Frameworks", "Prompt Engineering, langchain", "LangGraph", "Self-Improvement"],
+    tags: ["Python", "LLMs", "Agentic Frameworks", "Prompt Engineering"],
     github: "https://github.com/Aaiz-Am17/self_improving_ai_agent",
   },
   {
     title: "MapMate: Vision-Based Navigation",
     description: "A visual SLAM-based offline navigation and 3D mapping system for GPS-denied environments utilizing camera-driven scene understanding and depth estimation.",
-    tags: ["Python", "OpenCV", "SfM", "SLAM", "Midas", "ORB-SLAM2"],
+    tags: ["Python", "OpenCV", "SfM", "Google Maps SDK"],
     github: "https://github.com/Aaiz-Am17/FYP-Mapmate",
   },
   {
@@ -43,32 +43,32 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="container mx-auto px-8 py-24 max-w-screen-2xl">
-      <div className="flex flex-col items-center mb-16 text-center">
-        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500 pb-2">Featured Architecture</h2>
-        <p className="text-muted-foreground mt-4 max-w-2xl">
+    <section id="projects" className="container mx-auto px-8 py-32 max-w-screen-2xl">
+      <div className="flex flex-col items-center mb-20 text-center">
+        <h2 className="text-4xl font-bold tracking-tight sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500 pb-2">Featured Architecture</h2>
+        <p className="text-muted-foreground mt-6 max-w-2xl text-lg">
           A selection of my public repositories spanning multi-agent LLM systems, computer vision pipelines, and dynamic mapping infrastructure.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
         {projects.map((project, index) => (
-          <Card key={index} className="flex flex-col bg-background/40 backdrop-blur-md border-border/40 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:-translate-y-1">
-            <CardHeader>
-              <CardTitle className="text-xl">{project.title}</CardTitle>
-              <CardDescription className="pt-3 text-sm leading-relaxed text-muted-foreground/80">{project.description}</CardDescription>
+          <Card key={index} className="flex flex-col bg-background/40 backdrop-blur-md border-border/40 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:-translate-y-1">
+            <CardHeader className="p-8 pb-4">
+              <CardTitle className="text-2xl">{project.title}</CardTitle>
+              <CardDescription className="pt-4 text-base leading-relaxed text-muted-foreground/90">{project.description}</CardDescription>
             </CardHeader>
-            <CardContent className="flex-grow">
+            <CardContent className="flex-grow px-8">
               <div className="flex flex-wrap gap-2 mt-2">
                 {project.tags.map((tag, i) => (
-                  <Badge key={i} variant="secondary" className="bg-secondary/30 text-xs font-mono">{tag}</Badge>
+                  <Badge key={i} variant="secondary" className="bg-secondary/30 text-xs py-1 px-2 font-mono">{tag}</Badge>
                 ))}
               </div>
             </CardContent>
-            <CardFooter>
-              <Button variant="outline" size="sm" className="w-full bg-transparent hover:bg-primary/10 transition-colors" asChild>
+            <CardFooter className="p-8 pt-4">
+              <Button variant="outline" className="w-full bg-transparent hover:bg-primary/10 transition-colors py-6 text-sm tracking-wide" asChild>
                  <a href={project.github} target="_blank" rel="noreferrer">
-                   <GithubIcon className="w-4 h-4 mr-2"/> Source Code
+                   <GithubIcon className="w-5 h-5 mr-3"/> Source Code
                  </a>
               </Button>
             </CardFooter>
