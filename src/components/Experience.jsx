@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import DataTorus from "./DataTorus";
+import DataBackground from "./DataBackground";
 
 const skills = {
   "Programming Languages": ["Python", "C/C++", "SQL (Postgres, MSSQL)", "JavaScript", "HTML/CSS"],
@@ -12,11 +12,10 @@ const skills = {
 export default function Experience() {
   return (
     <section id="experience" className="relative container mx-auto px-8 py-24 max-w-screen-2xl overflow-hidden">
-      {/* 3D Background specifically for this section */}
-      <DataTorus />
+      {/* 3D Particle Background */}
+      <DataBackground />
 
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-        {/* Left Column: Experience */}
         <div>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-10 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">
             Professional Experience
@@ -57,7 +56,6 @@ export default function Experience() {
           </div>
         </div>
 
-        {/* Right Column: Technical Arsenal */}
         <div>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-10 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">
             Technical Arsenal

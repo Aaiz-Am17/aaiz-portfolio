@@ -41,6 +41,29 @@ const projects = [
   }
 ];
 
+const ProjectCard = ({ project }) => (
+  <Card className="flex flex-col h-full bg-background/40 backdrop-blur-md border-border/40 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:-translate-y-1">
+    <CardHeader className="p-8 pb-4">
+      <CardTitle className="text-2xl">{project.title}</CardTitle>
+      <CardDescription className="pt-4 text-base leading-relaxed text-muted-foreground/90">{project.description}</CardDescription>
+    </CardHeader>
+    <CardContent className="flex-grow px-8">
+      <div className="flex flex-wrap gap-2 mt-2">
+        {project.tags.map((tag, i) => (
+          <Badge key={i} variant="secondary" className="bg-secondary/30 text-xs py-1 px-2 font-mono">{tag}</Badge>
+        ))}
+      </div>
+    </CardContent>
+    <CardFooter className="p-8 pt-4">
+      <Button variant="outline" className="w-full bg-transparent hover:bg-primary/10 transition-colors py-6 text-sm tracking-wide" asChild>
+          <a href={project.github} target="_blank" rel="noreferrer">
+            <GithubIcon className="w-5 h-5 mr-3"/> Source Code
+          </a>
+      </Button>
+    </CardFooter>
+  </Card>
+);
+
 export default function Projects() {
   return (
     <section id="projects" className="container mx-auto px-8 py-32 max-w-screen-2xl">
@@ -51,28 +74,27 @@ export default function Projects() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+      {/* Desktop "Dice 5" Layout */}
+      <div className="hidden lg:flex flex-col gap-12 max-w-5xl mx-auto">
+        <div className="flex justify-between gap-12 w-full">
+          <div className="w-[48%]"><ProjectCard project={projects[0]} /></div>
+          <div className="w-[48%]"><ProjectCard project={projects[1]} /></div>
+        </div>
+        
+        <div className="flex justify-center w-full">
+          <div className="w-[48%]"><ProjectCard project={projects[2]} /></div>
+        </div>
+        
+        <div className="flex justify-between gap-12 w-full">
+          <div className="w-[48%]"><ProjectCard project={projects[3]} /></div>
+          <div className="w-[48%]"><ProjectCard project={projects[4]} /></div>
+        </div>
+      </div>
+
+      {/* Mobile & Tablet Standard Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:hidden">
         {projects.map((project, index) => (
-          <Card key={index} className="flex flex-col bg-background/40 backdrop-blur-md border-border/40 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:-translate-y-1">
-            <CardHeader className="p-8 pb-4">
-              <CardTitle className="text-2xl">{project.title}</CardTitle>
-              <CardDescription className="pt-4 text-base leading-relaxed text-muted-foreground/90">{project.description}</CardDescription>
-            </CardHeader>
-            <CardContent className="flex-grow px-8">
-              <div className="flex flex-wrap gap-2 mt-2">
-                {project.tags.map((tag, i) => (
-                  <Badge key={i} variant="secondary" className="bg-secondary/30 text-xs py-1 px-2 font-mono">{tag}</Badge>
-                ))}
-              </div>
-            </CardContent>
-            <CardFooter className="p-8 pt-4">
-              <Button variant="outline" className="w-full bg-transparent hover:bg-primary/10 transition-colors py-6 text-sm tracking-wide" asChild>
-                 <a href={project.github} target="_blank" rel="noreferrer">
-                   <GithubIcon className="w-5 h-5 mr-3"/> Source Code
-                 </a>
-              </Button>
-            </CardFooter>
-          </Card>
+          <ProjectCard key={index} project={project} />
         ))}
       </div>
     </section>
