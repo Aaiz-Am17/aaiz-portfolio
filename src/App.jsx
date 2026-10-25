@@ -4,33 +4,41 @@ import Projects from "./components/Projects";
 import Experience from "./components/Experience";
 import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
-import DataBackground from "./components/DataBackground"; // Importing the new background
+import DataBackground from "./components/DataBackground";
 
 function App() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans antialiased selection:bg-primary selection:text-primary-foreground relative scroll-smooth">
-      <div className="fixed top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
       
-      <Navbar />
+      {/* Global 3D Data Floor (Locked to the screen) */}
+      <div className="fixed inset-0 z-0 w-full h-full">
+        <DataBackground />
+      </div>
+      
+      <div className="relative z-50">
+        <Navbar />
+      </div>
+      
       <main>
-        {/* TOP ZONE: The Hero remains untouched */}
-        <Hero />
+        {/* Top Section: Solid background masks the 3D floor */}
+        <div className="relative z-10 bg-background shadow-[0_20px_50px_rgba(0,0,0,0.8)] pb-12 rounded-b-[40px] lg:rounded-b-[80px]">
+          <Hero />
+        </div>
         
-        {/* MIDDLE ZONE: Contains Projects, Experience, and Certifications */}
-        <div className="relative w-full overflow-hidden">
-          {/* This renders the 3D particles strictly for this middle zone */}
-          <DataBackground />
-          
+        {/* Middle Sections: Transparent background reveals the 3D floor */}
+        <div className="relative z-0 py-20">
           <Projects />
           <Experience />
           <Certifications />
         </div>
         
-        {/* BOTTOM ZONE: Contact form sits in the clear */}
-        <Contact />
+        {/* Bottom Section: Solid background masks the 3D floor */}
+        <div className="relative z-10 bg-background shadow-[0_-20px_50px_rgba(0,0,0,0.8)] pt-12 rounded-t-[40px] lg:rounded-t-[80px]">
+          <Contact />
+        </div>
       </main>
       
-      <footer className="border-t border-border/40 py-6 text-center">
+      <footer className="relative z-10 bg-background border-t border-border/40 py-6 text-center">
         <p className="text-sm text-muted-foreground">
           © {new Date().getFullYear()} Aaiz Mohsin. Architected with React & shadcn/ui.
         </p>

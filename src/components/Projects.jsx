@@ -42,7 +42,7 @@ const projects = [
 ];
 
 const ProjectCard = ({ project }) => (
-  <Card className="flex flex-col h-full bg-background/40 backdrop-blur-md border-border/40 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:-translate-y-1">
+  <Card className="flex flex-col h-full bg-background/60 backdrop-blur-xl border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:-translate-y-1">
     <CardHeader className="p-8 pb-4">
       <CardTitle className="text-2xl">{project.title}</CardTitle>
       <CardDescription className="pt-4 text-base leading-relaxed text-muted-foreground/90">{project.description}</CardDescription>
@@ -50,7 +50,7 @@ const ProjectCard = ({ project }) => (
     <CardContent className="flex-grow px-8">
       <div className="flex flex-wrap gap-2 mt-2">
         {project.tags.map((tag, i) => (
-          <Badge key={i} variant="secondary" className="bg-secondary/30 text-xs py-1 px-2 font-mono">{tag}</Badge>
+          <Badge key={i} variant="secondary" className="bg-secondary/40 text-xs py-1 px-2 font-mono">{tag}</Badge>
         ))}
       </div>
     </CardContent>
@@ -66,37 +66,25 @@ const ProjectCard = ({ project }) => (
 
 export default function Projects() {
   return (
-    <section id="projects" className="container mx-auto px-8 pt-24 pb-16 max-w-screen-2xl relative z-10">
-      <div className="flex flex-col items-center mb-20 text-center">
+    <section id="projects" className="container mx-auto px-8 py-20 max-w-screen-2xl">
+      <div className="flex flex-col items-center mb-16 text-center">
         <h2 className="text-4xl font-bold tracking-tight sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500 pb-2">Featured Architecture</h2>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg">
           A selection of my public repositories spanning multi-agent LLM systems, computer vision pipelines, and dynamic mapping infrastructure.
         </p>
       </div>
 
-      {/* Bulletproof Desktop "Dice 5" Layout */}
-      <div className="hidden lg:flex flex-col gap-12 max-w-5xl mx-auto">
-        <div className="flex gap-12 w-full">
-          <div className="flex-1"><ProjectCard project={projects[0]} /></div>
-          <div className="flex-1"><ProjectCard project={projects[1]} /></div>
-        </div>
-        
-        <div className="flex justify-center w-full">
-          {/* width = 50% minus half of the 3rem gap */}
-          <div className="w-[calc(50%-1.5rem)]"><ProjectCard project={projects[2]} /></div>
-        </div>
-        
-        <div className="flex gap-12 w-full">
-          <div className="flex-1"><ProjectCard project={projects[3]} /></div>
-          <div className="flex-1"><ProjectCard project={projects[4]} /></div>
-        </div>
-      </div>
-
-      {/* Mobile & Tablet Standard Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:hidden">
-        {projects.map((project, index) => (
-          <ProjectCard key={index} project={project} />
-        ))}
+      {/* Structured Bento Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-8 max-w-6xl mx-auto">
+        {projects.map((project, index) => {
+          // The first 2 cards span 3 columns each (50%). The last 3 cards span 2 columns each (33%).
+          const spanClass = index < 2 ? "md:col-span-3" : "md:col-span-2";
+          return (
+            <div key={index} className={spanClass}>
+              <ProjectCard project={project} />
+            </div>
+          );
+        })}
       </div>
     </section>
   );
