@@ -66,7 +66,7 @@ const ProjectCard = ({ project }) => (
 
 export default function Projects() {
   return (
-    <section id="projects" className="container mx-auto px-8 py-32 max-w-screen-2xl">
+    <section id="projects" className="container mx-auto px-8 pt-24 pb-16 max-w-screen-2xl relative z-10">
       <div className="flex flex-col items-center mb-20 text-center">
         <h2 className="text-4xl font-bold tracking-tight sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500 pb-2">Featured Architecture</h2>
         <p className="text-muted-foreground mt-6 max-w-2xl text-lg">
@@ -74,20 +74,21 @@ export default function Projects() {
         </p>
       </div>
 
-      {/* Desktop "Dice 5" Layout */}
+      {/* Bulletproof Desktop "Dice 5" Layout */}
       <div className="hidden lg:flex flex-col gap-12 max-w-5xl mx-auto">
-        <div className="flex justify-between gap-12 w-full">
-          <div className="w-[48%]"><ProjectCard project={projects[0]} /></div>
-          <div className="w-[48%]"><ProjectCard project={projects[1]} /></div>
+        <div className="flex gap-12 w-full">
+          <div className="flex-1"><ProjectCard project={projects[0]} /></div>
+          <div className="flex-1"><ProjectCard project={projects[1]} /></div>
         </div>
         
         <div className="flex justify-center w-full">
-          <div className="w-[48%]"><ProjectCard project={projects[2]} /></div>
+          {/* width = 50% minus half of the 3rem gap */}
+          <div className="w-[calc(50%-1.5rem)]"><ProjectCard project={projects[2]} /></div>
         </div>
         
-        <div className="flex justify-between gap-12 w-full">
-          <div className="w-[48%]"><ProjectCard project={projects[3]} /></div>
-          <div className="w-[48%]"><ProjectCard project={projects[4]} /></div>
+        <div className="flex gap-12 w-full">
+          <div className="flex-1"><ProjectCard project={projects[3]} /></div>
+          <div className="flex-1"><ProjectCard project={projects[4]} /></div>
         </div>
       </div>
 

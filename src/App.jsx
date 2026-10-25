@@ -4,6 +4,7 @@ import Projects from "./components/Projects";
 import Experience from "./components/Experience";
 import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
+import DataBackground from "./components/DataBackground"; // Importing the new background
 
 function App() {
   return (
@@ -12,10 +13,20 @@ function App() {
       
       <Navbar />
       <main>
+        {/* TOP ZONE: The Hero remains untouched */}
         <Hero />
-        <Projects />
-        <Experience />
-        <Certifications />
+        
+        {/* MIDDLE ZONE: Contains Projects, Experience, and Certifications */}
+        <div className="relative w-full overflow-hidden">
+          {/* This renders the 3D particles strictly for this middle zone */}
+          <DataBackground />
+          
+          <Projects />
+          <Experience />
+          <Certifications />
+        </div>
+        
+        {/* BOTTOM ZONE: Contact form sits in the clear */}
         <Contact />
       </main>
       
