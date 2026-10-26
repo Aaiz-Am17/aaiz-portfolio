@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
 const GithubIcon = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -64,7 +64,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="container mx-auto px-8 py-24 max-w-3xl mb-24">
+    <section id="contact" className="container mx-auto px-8 py-24 max-w-3xl mb-12">
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Let's Connect</h2>
         <p className="text-muted-foreground mt-4">
@@ -72,7 +72,7 @@ export default function Contact() {
         </p>
       </div>
 
-      <Card className="bg-background/50 backdrop-blur border-border/50">
+      <Card className="bg-background/60 backdrop-blur-xl border-border/50">
         <CardHeader>
           <CardTitle>Send a Message</CardTitle>
           <CardDescription>I will get back to you within 24 hours.</CardDescription>
@@ -129,16 +129,32 @@ export default function Contact() {
         </CardContent>
       </Card>
 
-      <div className="flex justify-center gap-6 mt-12">
-        <a href="mailto:aaiz.mohsin1@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-          <Mail className="h-6 w-6" />
-        </a>
-        <a href="https://linkedin.com/in/aaiz-mohsin" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-          <LinkedinIcon className="h-6 w-6" />
-        </a>
-        <a href="https://github.com/Aaiz-Am17" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-          <GithubIcon className="h-6 w-6" />
-        </a>
+      {/* Upgraded Direct Contact & Social Section */}
+      <div className="flex flex-col items-center gap-8 mt-12">
+        
+        {/* Direct Contact Info (Email & Phone) */}
+        <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 text-muted-foreground">
+          <a href="mailto:aaiz.mohsin1@gmail.com" className="flex items-center gap-3 hover:text-primary transition-colors">
+            <Mail className="h-5 w-5" />
+            <span className="font-mono text-sm">aaiz.mohsin1@gmail.com</span>
+          </a>
+          
+          {/* REPLACE THE PHONE NUMBERS HERE */}
+          <a href="tel:+923000000000" className="flex items-center gap-3 hover:text-primary transition-colors">
+            <Phone className="h-5 w-5" />
+            <span className="font-mono text-sm">+92 321 1779328</span>
+          </a>
+        </div>
+
+        {/* Social Icons */}
+        <div className="flex justify-center gap-8 mt-2">
+          <a href="https://linkedin.com/in/aaiz-mohsin" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+            <LinkedinIcon className="h-6 w-6" />
+          </a>
+          <a href="https://github.com/Aaiz-Am17" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+            <GithubIcon className="h-6 w-6" />
+          </a>
+        </div>
       </div>
     </section>
   );
